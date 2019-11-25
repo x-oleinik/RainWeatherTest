@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RainWeatherTest</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="warn_text_name">Your nickname should contain from 1 up to 16 chars!</string>
+    <string name="request_tv">Request the weather for Your location with the button below</string>
+    <string name="new_user">New User</string>
+</resources>
