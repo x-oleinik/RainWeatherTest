@@ -2,6 +2,7 @@ package io.realmagic.rainweathertest
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,14 +15,10 @@ class MainActivity2 : AppCompatActivity() {
     val APP_PREFERENCES = "MySettings"
     val USER_NAME = "UserName"
     val WAS_REG = "RegisterCheck"
+    val API_KEY = "217fca703f17d3de012dd3dc2aed2b4d"
 
     lateinit var pref : SharedPreferences
-    //
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-
-
-    private val mActivity
-        get() = (this as MainActivity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +34,12 @@ class MainActivity2 : AppCompatActivity() {
         //Create location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        //Get Location !!!! SOOOOQA EBANAYA! I WANNA GET IT!
-            Runnable {
+        //Get Location
                 fusedLocationClient.lastLocation
                     .addOnSuccessListener {
                         Log.i("Location888", it.toString())
-                    }
-
+                        Log.i("Latitude", it.latitude.toString())
+                        Log.i("Longitude", it.longitude.toString())
         }
 
 

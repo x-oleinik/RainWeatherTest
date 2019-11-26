@@ -47,6 +47,9 @@ dependencies {
     implementation 'com.github.devcsrj:slf4j-okhttp3-logging-interceptor:1.0.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     //Location
     implementation "com.google.android.gms:play-services-location:17.0.0"
 
