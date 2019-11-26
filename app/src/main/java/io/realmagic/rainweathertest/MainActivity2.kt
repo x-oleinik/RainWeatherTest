@@ -19,6 +19,7 @@ class MainActivity2 : AppCompatActivity() {
 
     lateinit var pref : SharedPreferences
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var restClient: RestClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +35,30 @@ class MainActivity2 : AppCompatActivity() {
         //Create location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
+        //Rest client
+        restClient = RestClient()
+
         //Get Location
-                fusedLocationClient.lastLocation
-                    .addOnSuccessListener {
-                        Log.i("Location888", it.toString())
-                        Log.i("Latitude", it.latitude.toString())
-                        Log.i("Longitude", it.longitude.toString())
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener {
+                Log.i("Location888", it.toString())
+                Log.i("Latitude", it.latitude.toString())
+                Log.i("Longitude", it.longitude.toString())
+               val latitude : Double = it.latitude
+               val longitude : Double = it.longitude
+
+                //Request weather
+                Thread(Runnable {
+                    val response = restClient.api.getWeather(latitude, longitude)
+                    runOnUiThread {
+                        location_tv.text = response.request().body.toString()
+                        Log.i("Response888", response.request().body.toString())
+                    }
+                }).start()
         }
+
+
+
 
 
     }
